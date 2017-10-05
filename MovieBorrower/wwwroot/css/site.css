@@ -1,7 +1,20 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    background-image:url(/images/photo-1489599849927-2ee91cede3ba.jpg);
+    background-position:center;
+    background-attachment:fixed;
+    color:white;
 }
+#logoHolder {
+    display:flex;
+    align-content:center;
+    justify-content:center;
+}
+#buttonHolder {
+    display:flex;
+    align-content:center;
+    justify-content:space-between;
+}
+
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */

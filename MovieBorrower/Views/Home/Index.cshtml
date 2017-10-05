@@ -2,3 +2,12 @@
     ViewData["Title"] = "Home Page";
 }
 
+<div class="container">
+    <div id="logoHolder">
+        <img id="logo" style="max-height:500px;" src="~/images/shutterstock_image.png" alt="Movie Borrower Logo" />
+    </div>
+    <div id="buttonHolder" class="row">
+        <a style="background:none; color:white" class="btn btn-default btn-lg col-md-3" role="button" asp-controller="Account" asp-action="Login">Log in</a>
+        <a style="background:none; color:white" class="btn btn-default btn-lg col-md-3" role="button" asp-controller="Account" asp-action="Register">Register</a>
+    </div>
+</div>

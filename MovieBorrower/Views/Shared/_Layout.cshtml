@@ -30,19 +30,17 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                   
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>
     <div class="container body-content">
+        <br />
+        <br />
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2017 - MovieBorrower</p>
-        </footer>
+        <br />
     </div>
 
     <environment include="Development">
