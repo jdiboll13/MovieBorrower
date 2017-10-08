@@ -7,7 +7,6 @@ namespace MovieBorrower.Models
 {
     public class MovieDetails
     {
-
         public class Movie
         {
             public bool adult { get; set; }
