@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,7 +9,10 @@ namespace MovieBorrower.Models
 {
     public class Credits
     {
-            public int Id { get; set; }
-            public List<Cast> cast { get; set; }
+        [JsonProperty("cast")]
+        public Cast[] Cast { get; set; }
+
+        [JsonProperty("id")]
+        public long Id { get; set; }
     }
 }

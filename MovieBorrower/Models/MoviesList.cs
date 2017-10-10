@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,33 +9,32 @@ namespace MovieBorrower.Models
 {
     public class MoviesList
     {
-        public class Item
-        {
-            public double vote_average { get; set; }
-            public int vote_count { get; set; }
-            public int Id { get; set; }
-            public bool video { get; set; }
-            public string media_type { get; set; }
-            public string title { get; set; }
-            public double popularity { get; set; }
-            public string poster_path { get; set; }
-            public string original_language { get; set; }
-            public string original_title { get; set; }
-            public List<int> genre_ids { get; set; }
-            public string backdrop_path { get; set; }
-            public bool adult { get; set; }
-            public string overview { get; set; }
-            public string release_date { get; set; }
-            public string original_name { get; set; }
-            public string name { get; set; }
-            public string first_air_date { get; set; }
-            public List<string> origin_country { get; set; }
-        }
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        public class Movies
-        {
-            public List<Item> items { get; set; }
-        }
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("created_by")]
+        public string CreatedBy { get; set; }
+
+        [JsonProperty("favorite_count")]
+        public long FavoriteCount { get; set; }
+
+        [JsonProperty("item_count")]
+        public long ItemCount { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("iso_639_1")]
+        public string Iso6391 { get; set; }
+
+        [JsonProperty("items")]
+        public Movies[] Movies { get; set; }
+
+        [JsonProperty("poster_path")]
+        public object PosterPath { get; set; }
     }
 
 }

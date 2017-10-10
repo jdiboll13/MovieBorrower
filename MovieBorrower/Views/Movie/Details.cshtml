@@ -1,0 +1,63 @@
+﻿@model MovieBorrower.Models.Movie
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Movie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+
+        </dt>
+        <dd>
+            @{
+                var url = "https://image.tmdb.org/t/p/w300_and_h450_bestv2" + Model.PosterPath;
+            }
+            <img src="@url">
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Homepage)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Homepage)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Overview)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Overview)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Runtime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Runtime)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Tagline)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tagline)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index" asp-controller="Movies">Back to List</a>
+</div>

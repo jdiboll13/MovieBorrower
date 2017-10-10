@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,13 +8,22 @@ namespace MovieBorrower.Models
 {
     public class Cast
     {
-        public int cast_id { get; set; }
-        public string character { get; set; }
-        public string credit_id { get; set; }
-        public int gender { get; set; }
-        public int Id { get; set; }
-        public string name { get; set; }
-        public int order { get; set; }
-        public string profile_path { get; set; }
+        [JsonProperty("id")]
+        public long Id { get; set; }
+
+        [JsonProperty("character")]
+        public string Character { get; set; }
+
+        [JsonProperty("cast_id")]
+        public long CastId { get; set; }
+
+        [JsonProperty("credit_id")]
+        public string CreditId { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("profile_path")]
+        public string ProfilePath { get; set; }
     }
 }
