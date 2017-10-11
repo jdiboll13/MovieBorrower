@@ -25,6 +25,16 @@ namespace MovieBorrower.Controllers
         // GET: Movies
         public async Task<IActionResult> Index()
         {
+            // check local database if movies exists
+            // if yes, then return that
+            var count = _context.Movies.Count();
+            if (count == 377)
+            {
+                return View(_context.Movies);
+            }
+            
+            // else 
+            // get data from API
             var url = "https://api.themoviedb.org/3/list/34905?language=en-US&api_key=7223486cbe3b2345dadd575b76df36c9";
             var request = WebRequest.Create(url);
             var response = request.GetResponse();
@@ -34,9 +44,10 @@ namespace MovieBorrower.Controllers
             {
                 rawResponse = reader.ReadToEnd();
             }
-
+            // store in local db
             var moviesList = JsonConvert.DeserializeObject<MoviesList>(rawResponse);
-
+            //_context.Add(moviesList.Movies);
+            //await _context.SaveChangesAsync();
             return View(moviesList.Movies);
         }
     }

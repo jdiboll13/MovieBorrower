@@ -1,13 +1,13 @@
 ﻿@model MovieBorrower.Models.Movie
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = Model.Title;
 }
 
-<h2>Details</h2>
+<h2>@Model.Title</h2>
 
 <div>
-    <h4>Movie</h4>
+    <h4>"@Model.Tagline"</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,16 +20,20 @@
             <img src="@url">
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.ReleaseDate)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+        
+        <dd>
+            @foreach (var item in Model.Genre)
+            {
+                <a asp-controller="Genre" asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(genre => item.Name)</a>
+            }
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Homepage)
@@ -48,13 +52,6 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Runtime)
-        </dd>
-        
-        <dt>
-            @Html.DisplayNameFor(model => model.Tagline)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Tagline)
         </dd>
     </dl>
 </div>

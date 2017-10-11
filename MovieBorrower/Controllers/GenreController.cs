@@ -115,36 +115,7 @@ namespace MovieBorrower.Controllers
             }
             return View(genre);
         }
-
-        // GET: Genre/Delete/5
-        public async Task<IActionResult> Delete(long? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var genre = await _context.Genre
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (genre == null)
-            {
-                return NotFound();
-            }
-
-            return View(genre);
-        }
-
-        // POST: Genre/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
-        {
-            var genre = await _context.Genre.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Genre.Remove(genre);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
+        
         private bool GenreExists(long id)
         {
             return _context.Genre.Any(e => e.Id == id);
