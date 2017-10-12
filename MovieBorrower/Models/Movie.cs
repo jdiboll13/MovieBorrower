@@ -22,7 +22,7 @@ namespace MovieBorrower.Models
         public Genre[] Genre { get; set; }
 
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
         
         [JsonProperty("overview")]
         public string Overview { get; set; }
@@ -31,7 +31,7 @@ namespace MovieBorrower.Models
         public string PosterPath { get; set; }
         
         [JsonProperty("runtime")]
-        public long Runtime { get; set; }
+        public int Runtime { get; set; }
         
         [JsonProperty("title")]
         public string Title { get; set; }

@@ -13,6 +13,6 @@ namespace MovieBorrower.Models
         public Cast[] Cast { get; set; }
 
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
     }
 }

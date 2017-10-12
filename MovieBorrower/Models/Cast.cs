@@ -9,13 +9,13 @@ namespace MovieBorrower.Models
     public class Cast
     {
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("character")]
         public string Character { get; set; }
 
         [JsonProperty("cast_id")]
-        public long CastId { get; set; }
+        public int CastId { get; set; }
 
         [JsonProperty("credit_id")]
         public string CreditId { get; set; }

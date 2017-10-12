@@ -21,19 +21,27 @@ namespace MovieBorrower.Controllers
         {
             _context = context;
         }
+        // GET: Movies
+        public async Task<IActionResult> Index()
+        {
+            var url = "https://api.themoviedb.org/3/list/34905?language=en-US&api_key=7223486cbe3b2345dadd575b76df36c9";
+            var request = WebRequest.Create(url);
+            var response = request.GetResponse();
+
+            var rawResponse = String.Empty;
+            using (var reader = new StreamReader(response.GetResponseStream()))
+            {
+                rawResponse = reader.ReadToEnd();
+            }
+            var moviesList = JsonConvert.DeserializeObject<MoviesList>(rawResponse);
+            return View(moviesList.Movies);
+        }
 
         // GET: Movie/Details/5
-        public async Task<IActionResult> Details(long id)
+        public async Task<IActionResult> Details(int? id)
         {
             var movie_id = id;
-            // check local database if movie exists
-            // if yes, then return that
-            if (MovieExists(id))
-            {
-                return View(_context.Movie);
-            }
-            // else 
-            // get data from API
+            
             var url = "https://api.themoviedb.org/3/movie/" + movie_id + "?api_key=7223486cbe3b2345dadd575b76df36c9&language=en-US";
             var request = WebRequest.Create(url);
             var response = request.GetResponse();
@@ -50,13 +58,10 @@ namespace MovieBorrower.Controllers
             {
                 return NotFound();
             }
-            // store in local db
-            _context.Add(movie);
-            await _context.SaveChangesAsync();
             return View(movie);
         }
 
-        private bool MovieExists(long id)
+        private bool MovieExists(int id)
         {
             return _context.Movie.Any(e => e.Id == id);
         }

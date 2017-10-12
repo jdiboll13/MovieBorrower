@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MovieBorrower.Data;
 using MovieBorrower.Models;
+using System.Net;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace MovieBorrower.Controllers
 {
@@ -32,9 +35,20 @@ namespace MovieBorrower.Controllers
             {
                 return NotFound();
             }
+            var movie_id = id;
 
-            var credits = await _context.Credits
-                .SingleOrDefaultAsync(m => m.Id == id);
+            var url = "https://api.themoviedb.org/3/movie/" + movie_id + "/credits?api_key=7223486cbe3b2345dadd575b76df36c9";
+            var request = WebRequest.Create(url);
+            var response = request.GetResponse();
+
+            var rawResponse = String.Empty;
+            using (var reader = new StreamReader(response.GetResponseStream()))
+            {
+                rawResponse = reader.ReadToEnd();
+            }
+
+            var credits = JsonConvert.DeserializeObject<Credits>(rawResponse);
+
             if (credits == null)
             {
                 return NotFound();

@@ -1,18 +1,48 @@
 ﻿@model MovieBorrower.Models.Credits
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Cast";
 }
 
 <h2>Cast</h2>
 
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+                Actor Name
+            </th>
+            <th>
+                Character Name
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Cast)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("Details", "Actor", new { id = item.Id })">
+                        @{
+                            var url = "https://image.tmdb.org/t/p/w138_and_h175_bestv2" + item.ProfilePath;
+                        }
+                        <img src="@url">
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", "Actor", new { id = item.Id })">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Character)
+                </td>
+            </tr>
+         }
+    </tbody>
+</table>
 <div>
-    <h4>Credits</h4>
-    <hr />
-    <dl class="dl-horizontal">
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Movie" asp-action="Index">Back to List</a>
 </div>

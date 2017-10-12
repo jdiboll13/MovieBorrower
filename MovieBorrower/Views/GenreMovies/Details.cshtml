@@ -1,42 +1,49 @@
 ﻿@model MovieBorrower.Models.GenreMovies
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Movies in Selected Genre";
 }
 
-<h2>Details</h2>
+<h2>Movies in Selected Genre</h2>
 
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Overview
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Results)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("Details", "Movie", new { id = item.Id })">
+                        @{
+                            var url = "https://image.tmdb.org/t/p/w185_and_h278_bestv2" + item.PosterPath;
+                        }
+                        <img src="@url">
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", "Movie", new { id = item.Id })">
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Overview)
+                </td>
+            </tr>
+                            }
+    </tbody>
+</table>
 <div>
-    <h4>GenreMovies</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Overview)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Overview)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ReleaseDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ReleaseDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PosterPath)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PosterPath)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Movie" asp-action="Index">Back to List</a>
 </div>

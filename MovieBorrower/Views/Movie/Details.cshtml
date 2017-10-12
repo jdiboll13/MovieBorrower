@@ -32,14 +32,20 @@
         <dd>
             @foreach (var item in Model.Genre)
             {
-                <a asp-controller="Genre" asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(genre => item.Name)</a>
+                <a asp-controller="GenreMovies" asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(genre => item.Name)</a>
             }
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Homepage)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Homepage)
+            <a src="@Html.DisplayFor(model => model.Homepage)">@Html.DisplayFor(model => model.Homepage)</a>
+        </dd>
+        <dt>
+            Cast
+        </dt>
+        <dd>
+            <a asp-controller="Credits" asp-action="Details" asp-route-id="@Model.Id">Cast</a>
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Overview)

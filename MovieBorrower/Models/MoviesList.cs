@@ -19,10 +19,10 @@ namespace MovieBorrower.Models
         public string CreatedBy { get; set; }
 
         [JsonProperty("favorite_count")]
-        public long FavoriteCount { get; set; }
+        public int FavoriteCount { get; set; }
 
         [JsonProperty("item_count")]
-        public long ItemCount { get; set; }
+        public int ItemCount { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }

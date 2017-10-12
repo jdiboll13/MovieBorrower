@@ -26,7 +26,7 @@ namespace MovieBorrower.Controllers
         }
 
         // GET: Genre/Details/5
-        public async Task<IActionResult> Details(long? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace MovieBorrower.Controllers
         }
 
         // GET: Genre/Edit/5
-        public async Task<IActionResult> Edit(long? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -116,7 +116,7 @@ namespace MovieBorrower.Controllers
             return View(genre);
         }
         
-        private bool GenreExists(long id)
+        private bool GenreExists(int id)
         {
             return _context.Genre.Any(e => e.Id == id);
         }
