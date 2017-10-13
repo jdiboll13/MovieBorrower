@@ -11,6 +11,7 @@ using System.Net;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MovieBorrower.Controllers
 {
@@ -24,6 +25,7 @@ namespace MovieBorrower.Controllers
         }
 
         // GET: Actor/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -53,9 +55,6 @@ namespace MovieBorrower.Controllers
             return View(actor);
         }
         
-        private bool ActorExists(int id)
-        {
-            return _context.Actor.Any(e => e.Id == id);
-        }
+   
     }
 }

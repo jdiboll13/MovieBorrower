@@ -10,6 +10,7 @@ using MovieBorrower.Models;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MovieBorrower.Controllers
 {
@@ -22,13 +23,8 @@ namespace MovieBorrower.Controllers
             _context = context;
         }
 
-        // GET: Credits
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Credits.ToListAsync());
-        }
-
         // GET: Credits/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

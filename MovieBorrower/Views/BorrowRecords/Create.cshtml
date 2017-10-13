@@ -1,0 +1,43 @@
+﻿@model MovieBorrower.Models.BorrowRecords
+
+@{
+    ViewData["Title"] = "Borrow";
+}
+
+<h2>Borrow @Model.Title?</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MovieId" value="MovieId" />
+            <input type="hidden" asp-for="PickUpDate" value="DateTime.Now.AddDays(5)" />
+            <input type="hidden" asp-for="DueDate" value="DateTime.Now.AddDays(30)" />
+            <input type="hidden" asp-for="ApplicationUser.Id" value="ApplicationUser.Id" />
+            <p>
+                If you would like to borrow @Model.Title ,
+            </p>
+            <p>
+                please pick it up by @Model.PickUpDate.
+            </p>
+            <p>
+                The Movie would be due back to by @Model.DueDate.
+            </p>
+            <p>
+                If you agree to this, Click the button below!
+            </p>
+            <div class="form-group">
+                <input style="background:none; color:white" class="btn btn-default btn-lg col-md-3" type="submit" value="Borrow" asp-controller="BorrowRecords" asp-action="Details" asp-route-id="@Model.ApplicationUser.Id" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

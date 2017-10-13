@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,24 +10,25 @@ namespace MovieBorrower.Models
     public class GenreMovies
     {
         [JsonProperty("page")]
-        public long Page { get; set; }
+        public int Page { get; set; }
 
         [JsonProperty("total_pages")]
-        public long TotalPages { get; set; }
+        public int TotalPages { get; set; }
 
         [JsonProperty("id")]
-        public long Id { get; set; }
-
+        public int Id { get; set; }
+        
+        [NotMapped]
         [JsonProperty("results")]
         public Result[] Results { get; set; }
 
         [JsonProperty("total_results")]
-        public long TotalResults { get; set; }
+        public int TotalResults { get; set; }
     }
     public class Result
     {
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("popularity")]
         public double Popularity { get; set; }
@@ -37,8 +39,9 @@ namespace MovieBorrower.Models
         [JsonProperty("adult")]
         public bool Adult { get; set; }
 
+        [NotMapped]
         [JsonProperty("genre_ids")]
-        public long[] GenreIds { get; set; }
+        public int[] GenreIds { get; set; }
 
         [JsonProperty("original_title")]
         public string OriginalTitle { get; set; }
@@ -65,6 +68,6 @@ namespace MovieBorrower.Models
         public double VoteAverage { get; set; }
 
         [JsonProperty("vote_count")]
-        public long VoteCount { get; set; }
+        public int VoteCount { get; set; }
     }
 }

@@ -10,6 +10,7 @@ using MovieBorrower.Models;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MovieBorrower.Controllers
 {
@@ -22,6 +23,7 @@ namespace MovieBorrower.Controllers
             _context = context;
         }
         // GET: Movies
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var url = "https://api.themoviedb.org/3/list/34905?language=en-US&api_key=7223486cbe3b2345dadd575b76df36c9";
@@ -38,6 +40,7 @@ namespace MovieBorrower.Controllers
         }
 
         // GET: Movie/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             var movie_id = id;
@@ -61,9 +64,6 @@ namespace MovieBorrower.Controllers
             return View(movie);
         }
 
-        private bool MovieExists(int id)
-        {
-            return _context.Movie.Any(e => e.Id == id);
-        }
+    
     }
 }

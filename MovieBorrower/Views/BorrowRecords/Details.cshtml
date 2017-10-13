@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MovieBorrower.Models.BorrowRecords>
+
+@{
+    ViewData["Title"] = "User Dashboard";
+}
+
+<h2>The Movies You've Borrowed</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                PickUp Date
+            </th>
+            <th>
+                Due Date
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("Details", "Movie", new { id = item.MovieId })">
+                        @{
+                            var url = "https://image.tmdb.org/t/p/w185_and_h278_bestv2" + item.Movies.PosterPath;
+                        }
+                        <img src="@url">
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", "Movie", new { id = item.MovieId })">
+                        @Html.DisplayFor(modelItem => item.Movies.Title)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PickUpDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueDate)
+                </td>
+            </tr>
+                            }
+    </tbody>
+</table>
+<a href="@Url.Action("Index", "Movie")"><h1>To The Movies List!</h1></a>

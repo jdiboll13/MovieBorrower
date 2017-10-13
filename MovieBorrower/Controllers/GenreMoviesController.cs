@@ -10,6 +10,7 @@ using MovieBorrower.Models;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MovieBorrower.Controllers
 {
@@ -23,6 +24,7 @@ namespace MovieBorrower.Controllers
         }
 
         // GET: GenreMovies/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             var genre_id = id;
@@ -51,10 +53,6 @@ namespace MovieBorrower.Controllers
 
             return View(genreMovies);
         }
-        
-        private bool GenreMoviesExists(int id)
-        {
-            return _context.GenreMovies.Any(e => e.Id == id);
-        }
+   
     }
 }

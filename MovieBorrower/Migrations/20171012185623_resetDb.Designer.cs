@@ -11,9 +11,10 @@ using System;
 namespace MovieBorrower.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171012185623_resetDb")]
+    partial class resetDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,48 +180,6 @@ namespace MovieBorrower.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("MovieBorrower.Models.BorrowRecords", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<DateTime>("DueDate");
-
-                    b.Property<int>("MovieId");
-
-                    b.Property<int?>("MoviesId");
-
-                    b.Property<DateTime>("PickUpDate");
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("MoviesId");
-
-                    b.ToTable("BorrowRecords");
-                });
-
-            modelBuilder.Entity("MovieBorrower.Models.Movies", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Overview");
-
-                    b.Property<string>("PosterPath");
-
-                    b.Property<string>("Title");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Movies");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -264,17 +223,6 @@ namespace MovieBorrower.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MovieBorrower.Models.BorrowRecords", b =>
-                {
-                    b.HasOne("MovieBorrower.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("MovieBorrower.Models.Movies", "Movies")
-                        .WithMany()
-                        .HasForeignKey("MoviesId");
                 });
 #pragma warning restore 612, 618
         }
