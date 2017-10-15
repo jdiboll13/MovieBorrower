@@ -72,7 +72,7 @@ namespace MovieBorrower.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,MovieId,PickUpDate,DueDate,ApplicationUser.Id")] BorrowRecords borrowRecords)
+        public async Task<IActionResult> Create([Bind("Id,MovieId,PickUpDate,DueDate,ApplicationUser")] BorrowRecords borrowRecords)
         {
             if (ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace MovieBorrower.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,MovieId,PickUpDate,DueDate,ApplicationUser.Id")] BorrowRecords borrowRecords)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,MovieId,PickUpDate,DueDate,ApplicationUser")] BorrowRecords borrowRecords)
         {
             if (id != borrowRecords.Id)
             {

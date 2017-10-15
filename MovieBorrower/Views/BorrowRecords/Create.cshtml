@@ -8,7 +8,7 @@
 
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="MovieId" value="MovieId" />
@@ -19,10 +19,10 @@
                 If you would like to borrow @Model.Title ,
             </p>
             <p>
-                please pick it up by @Model.PickUpDate.
+                please pick it up by @Model.PickUpDate.Date.
             </p>
             <p>
-                The Movie would be due back to by @Model.DueDate.
+                The Movie would be due back to by @Model.DueDate.Date.
             </p>
             <p>
                 If you agree to this, Click the button below!

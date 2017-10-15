@@ -30,14 +30,14 @@
                 <td>
                     <a href="@Url.Action("Details", "Movie", new { id = item.MovieId })">
                         @{
-                            var url = "https://image.tmdb.org/t/p/w185_and_h278_bestv2" + item.Movies.PosterPath;
+                            var url = "https://image.tmdb.org/t/p/w185_and_h278_bestv2" + item.Movie.PosterPath;
                         }
                         <img src="@url">
                     </a>
                 </td>
                 <td>
                     <a href="@Url.Action("Details", "Movie", new { id = item.MovieId })">
-                        @Html.DisplayFor(modelItem => item.Movies.Title)
+                        @Html.DisplayFor(modelItem => item.Movie.Title)
                     </a>
                 </td>
                 <td>

@@ -10,10 +10,9 @@ namespace MovieBorrower.Models
     {
         public int Id { get; set; }
         public int MovieId { get; set; }
-        public Movies Movies { get; set; }
+        public Movie Movie { get; set; }
         public DateTime PickUpDate { get; set; } = DateTime.Today.AddDays(5);
         public DateTime DueDate { get; set; } = DateTime.Today.AddDays(30);
-        public string UserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
         [JsonProperty("poster_path")]
