@@ -11,28 +11,29 @@ using Microsoft.AspNetCore.Authorization;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Identity;
 
 namespace MovieBorrower.Controllers
 {
     public class BorrowRecordsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public BorrowRecordsController(ApplicationDbContext context)
+        public BorrowRecordsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
-        
+
         // GET: BorrowRecords/Details/5
         [Authorize]
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var borrowRecords = _context.BorrowRecords.Select(s => s.ApplicationUser.Id);
+            var user = await _userManager.GetUserAsync(User);
+
+            var borrowRecords = _context.BorrowRecords.Where(w => w.ApplicationUserId == user.Id);
             if (borrowRecords == null)
             {
                 return NotFound();
@@ -57,8 +58,7 @@ namespace MovieBorrower.Controllers
                 rawResponse = reader.ReadToEnd();
             }
 
-            var movie = JsonConvert.DeserializeObject<BorrowRecords>(rawResponse);
-
+            var movie = JsonConvert.DeserializeObject<Movie>(rawResponse);
             if (movie == null)
             {
                 return NotFound();
@@ -72,15 +72,21 @@ namespace MovieBorrower.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,MovieId,PickUpDate,DueDate,ApplicationUser")] BorrowRecords borrowRecords)
+        public async Task<IActionResult> Create([FromRoute] int id, [FromForm] string title, [FromForm] string posterPath)
         {
-            if (ModelState.IsValid)
+            var borrowRecords = new BorrowRecords
             {
-                _context.Add(borrowRecords);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Details));
-            }
-            return View(borrowRecords);
+                MovieId = id,
+                Title = title,
+                PosterPath = posterPath
+            };
+
+            var user = await _userManager.GetUserAsync(User);
+            borrowRecords.ApplicationUserId = user.Id;
+            _context.Add(borrowRecords);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Details));
+
         }
 
         // GET: BorrowRecords/Edit/5

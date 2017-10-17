@@ -10,12 +10,12 @@ namespace MovieBorrower.Models
     {
         public int Id { get; set; }
 
-        [JsonProperty("id")]
         public int MovieId { get; set; }
 
         public DateTime PickUpDate { get; set; } = DateTime.Today.AddDays(5);
         public DateTime DueDate { get; set; } = DateTime.Today.AddDays(30);
 
+        public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
         [JsonProperty("poster_path")]

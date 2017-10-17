@@ -1,4 +1,4 @@
-﻿@model MovieBorrower.Models.BorrowRecords
+﻿@model MovieBorrower.Models.Movie
 
 @{
     ViewData["Title"] = "Borrow";
@@ -8,34 +8,34 @@
 
 <hr />
 <div class="row">
-    <div class="col-md-6">
-        <form asp-action="Create">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-route-id="@Model.Id">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="MovieId" value="MovieId" />
-            <input type="hidden" asp-for="PickUpDate" value="DateTime.Now.AddDays(5)" />
-            <input type="hidden" asp-for="DueDate" value="DateTime.Now.AddDays(30)" />
-            <input type="hidden" asp-for="ApplicationUser.Id" value="ApplicationUser.Id" />
+            <input type="hidden" asp-for="Id" value="Id" />
+            <input type="hidden" asp-for="Title" value="@Model.Title" />
+            <input type="hidden" asp-for="PosterPath" value="@Model.PosterPath" />
+          
             <p>
                 If you would like to borrow @Model.Title ,
             </p>
             <p>
-                please pick it up by @Model.PickUpDate.Date.
+                please pick it up by @DateTime.Now.AddDays(5).Date.
             </p>
             <p>
-                The Movie would be due back to by @Model.DueDate.Date.
+                The Movie would be due back to by @DateTime.Now.AddDays(30).Date.
             </p>
             <p>
                 If you agree to this, Click the button below!
             </p>
             <div class="form-group">
-                <a style="background:none; color:white" class="btn btn-default btn-lg col-md-3" role="button" asp-controller="BorrowRecords" asp-action="Create" asp-route-id="@Model.ApplicationUser.Id">Borrow</a>
+                <input style="background:none; color:white" class="btn btn-default btn-lg col-md-3" type="submit" value="Borrow" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-controller="Home" asp-action="Index">Back to List</a>
+    <a asp-controller="Movie" asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

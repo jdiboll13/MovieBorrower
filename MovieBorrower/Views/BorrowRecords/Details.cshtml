@@ -28,13 +28,12 @@
         {
             <tr>
                 <td>
-                    <a href="@Url.Action("Details", "Movie", new { id = item.MovieId })">
+                    <a href="@Url.Action("Details", "Movie", new { id = item.Id })">
                         @{
                             var url = "https://image.tmdb.org/t/p/w185_and_h278_bestv2" + item.PosterPath;
                         }
                         <img src="@url">
-                    </a>
-                </td>
+</td>
                 <td>
                     <a href="@Url.Action("Details", "Movie", new { id = item.MovieId })">
                         @Html.DisplayFor(modelItem => item.Title)
@@ -50,4 +49,4 @@
                             }
     </tbody>
 </table>
-<a href="@Url.Action("Index", "Movie")"><h1>To The Movies List!</h1></a>
+<a href="@Url.Action("Index", "Movie")"><h3>Back To The Movies List!</h3></a>
