@@ -28,7 +28,7 @@
         {
             <tr>
                 <td>
-                    <a href="@Url.Action("Details", "Movie", new { id = item.Id })">
+                    <a href="@Url.Action("Details", "Movie", new { id = item.MovieId })">
                         @{
                             var url = "https://image.tmdb.org/t/p/w185_and_h278_bestv2" + item.PosterPath;
                         }
